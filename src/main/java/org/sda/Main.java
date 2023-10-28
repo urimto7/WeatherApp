@@ -10,6 +10,7 @@ public class Main {
 
             SessionFactory factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();//coment
+        //New Coment
 
 
     }
