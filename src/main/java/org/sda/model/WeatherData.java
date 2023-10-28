@@ -85,7 +85,7 @@ public class WeatherData {
     }
 
     @Override
-    public String toString() {
+    public String toString() {// to string
         return "WeatherData{" +
                 "id=" + id +
                 ", date=" + date +
