@@ -11,20 +11,23 @@ import java.util.UUID;
 
 import static org.sda.util.HibernateUtil.sessionFactory;
 
-public class WeatherDataServiceImp implements WeatherDataDao {
+public class WeatherDataServiceImp implements WeatherDataService {
     private WeatherDataDao weatherDataDao;
     public WeatherDataServiceImp(WeatherDataDao weatherDataDao){
         this.weatherDataDao=weatherDataDao;
     }
+
+
     @Override
-    public WeatherData findById(UUID id) {
+    public WeatherData getWeatherDataById(UUID id) {
         return weatherDataDao.findById(id);
     }
 
     @Override
-    public List<WeatherData> findByLocation(Location location) {
+    public List<WeatherData> getWeatherDataForLocation(Location location) {
         return weatherDataDao.findByLocation(location);
     }
+
     public void addWeatherData(WeatherData weatherData){
         Session session= sessionFactory.openSession();
         Transaction tx=null;
@@ -46,22 +49,21 @@ public class WeatherDataServiceImp implements WeatherDataDao {
 
     }
 
-
     @Override
-    public void save(WeatherData weatherData) {
-        weatherDataDao.save(weatherData);
-
-    }
-
-    @Override
-    public void update(WeatherData weatherData) {
+    public void updateWheatherData(WeatherData weatherData) {
         weatherDataDao.update(weatherData);
 
     }
 
     @Override
-    public void delete(WeatherData weatherData) {
+    public void deleteWheatherData(WeatherData weatherData) {
         weatherDataDao.delete(weatherData);
 
     }
+
+
+
+
+
+
 }

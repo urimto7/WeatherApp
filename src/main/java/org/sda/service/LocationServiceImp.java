@@ -10,11 +10,13 @@ import java.util.UUID;
 
 import static org.sda.util.HibernateUtil.sessionFactory;
 
-public class LocationServiceImp implements LocationService{
+public class LocationServiceImp implements LocationService {
     private LocationDao locationDao;
-    public LocationServiceImp(LocationDao locationDao){
-        this.locationDao=locationDao;
+
+    public LocationServiceImp(LocationDao locationDao) {
+        this.locationDao = locationDao;
     }
+
     @Override
     public Location getLocationById(UUID id) {
         return locationDao.findById(id);
@@ -27,21 +29,19 @@ public class LocationServiceImp implements LocationService{
 
     @Override
     public void addLocation(Location location) {
-        Session session= sessionFactory.openSession();
-        Transaction tx=null;
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
 
         try {
-            tx=session.beginTransaction();
+            tx = session.beginTransaction();
             session.save(location);
             tx.commit();
-        }
-        catch (Exception e){
-            if (tx != null){
+        } catch (Exception e) {
+            if (tx != null) {
                 tx.rollback();
             }
             throw e;
-        }
-        finally {
+        } finally {
             session.close();
         }
 
